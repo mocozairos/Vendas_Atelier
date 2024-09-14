@@ -1091,6 +1091,8 @@ def puxar_bd_receitas():
 
     st.session_state.df_receitas['mes'] = st.session_state.df_receitas['mes'].astype(int)
 
+    st.session_state.df_receitas['valor'] = st.session_state.df_receitas['valor'].astype(float)
+
     st.session_state.df_receitas['Ano/Mês'] = st.session_state.df_receitas['mes'].astype(str) + '/' + \
         st.session_state.df_receitas['ano'].astype(str).str[-2:]
 
@@ -1152,8 +1154,6 @@ if data_inicial and data_final:
 
     df_receitas_mesmo_trimestre = st.session_state.df_receitas[(st.session_state.df_receitas['ano']<=ano_final) & 
                                                                (st.session_state.df_receitas['tri']==tri_atual)].reset_index(drop=True)
-
-    st.session_state.df_receitas['valor'].dtype
     
 lista_unidade = ['TODAS']
 
