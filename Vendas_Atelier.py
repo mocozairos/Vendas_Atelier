@@ -1095,8 +1095,6 @@ def puxar_bd_receitas():
 
 st.set_page_config(layout='wide')
 
-st.session_state.df_receitas
-
 if 'df_receitas' not in st.session_state:
 
     puxar_bd_receitas()
@@ -1213,9 +1211,10 @@ if data_inicial and data_final and unidade and tipo_produto and noiva_festa:
 
     if analise=='Vendas vs Qtd.' or analise=='Ticket Médio vs Qtd.' or analise=='Vendas vs Ticket Médio':
 
+        st.session_state.df_receitas
+
         df_grafico_mensal_1, df_grafico_mensal_2, df_grafico_trimestral_1, df_grafico_trimestral_2, df_grafico_anual = \
-            criar_df_mensal_trimestral_anual(df_receitas_filtro, df_receitas_mesmo_mes, df_receitas_trimestral, df_receitas_mesmo_trimestre, 
-                                             st.session_state.df_receitas)
+            criar_df_mensal_trimestral_anual(df_receitas_filtro, df_receitas_mesmo_mes, df_receitas_trimestral, df_receitas_mesmo_trimestre, st.session_state.df_receitas)
 
     elif analise=='%Sob Medida vs %Pret a Porter' and tipo_produto=='TODOS' and noiva_festa=='TODOS':
 
