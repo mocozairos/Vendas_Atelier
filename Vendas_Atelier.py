@@ -1190,7 +1190,7 @@ if unidade and data_inicial and data_final:
 
 lista_tipo_produtos = ['TODOS']
 
-lista_tipo_produtos.extend(st.session_state.df_receitas.tipo_de_produto.unique().tolist())
+lista_tipo_produtos.extend(st.session_state.df_receitas[st.session_state.df_receitas['tipo_de_produto']!='SALE'].tipo_de_produto.unique().tolist())
 
 with row1[2]:
 
