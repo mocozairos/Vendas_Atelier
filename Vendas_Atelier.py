@@ -1103,7 +1103,9 @@ if 'df_receitas' not in st.session_state:
 
     puxar_bd_receitas()
 
-st.title('Análise de Vendas', help='É preciso preencher todos os campos: Período, Unidade, Tipo de Produto e Noiva | Festa')
+st.title('Análise de Vendas')
+
+st.markdown('*É preciso preencher todos os campos: Período, Unidade, Tipo de Produto e Noiva | Festa*')
 
 st.divider()
 
