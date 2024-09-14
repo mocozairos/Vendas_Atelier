@@ -1152,6 +1152,17 @@ if data_inicial and data_final:
 
     df_receitas_mesmo_trimestre = st.session_state.df_receitas[(st.session_state.df_receitas['ano']<=ano_final) & 
                                                                (st.session_state.df_receitas['tri']==tri_atual)].reset_index(drop=True)
+
+    df_trimestre_atual
+
+    trimestre_atual
+
+    tri_atual
+    df_receitas_filtro
+    df_receitas_mesmo_mes
+    df_receitas_trimestral
+    df_receitas_mesmo_trimestre
+    
     
 lista_unidade = ['TODAS']
 
