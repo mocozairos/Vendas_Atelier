@@ -1129,7 +1129,7 @@ if data_inicial and data_final:
 
     ano_ultima_venda = st.session_state.df_receitas['ano'].max()
 
-    mes_ultima_venda = st.session_state.df_receitas['mes'].max()
+    mes_ultima_venda = st.session_state.df_receitas[st.session_state.df_receitas['ano']==ano_ultima_venda]['mes'].max()
 
     ano_inicial = data_inicial.year
 
