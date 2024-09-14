@@ -1105,7 +1105,7 @@ if 'df_receitas' not in st.session_state:
 
 st.title('Análise de Vendas')
 
-st.markdown('*É preciso preencher todos os campos: Período, Unidade, Tipo de Produto e Noiva | Festa*')
+st.markdown('*É preciso preencher todos os campos: Data Inicial, Data Final, Unidade, Tipo de Produto e Noiva | Festa*')
 
 st.divider()
 
