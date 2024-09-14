@@ -1216,6 +1216,8 @@ if data_inicial and data_final and unidade and tipo_produto and noiva_festa:
 
     if analise=='Vendas vs Qtd.' or analise=='Ticket Médio vs Qtd.' or analise=='Vendas vs Ticket Médio':
 
+        st.session_state.df_receitas
+
         df_receitas_filtro
 
         df_grafico_mensal_1, df_grafico_mensal_2, df_grafico_trimestral_1, df_grafico_trimestral_2, df_grafico_anual = \
