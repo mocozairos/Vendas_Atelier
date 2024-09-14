@@ -1097,8 +1097,6 @@ def puxar_bd_receitas():
 
     st.session_state.df_receitas['valor'] = pd.to_numeric(st.session_state.df_receitas['valor'], errors='coerce')
 
-    st.write(st.session_state.df_receitas['valor'].dtype)
-
 st.set_page_config(layout='wide')
 
 if 'df_receitas' not in st.session_state:
@@ -1216,8 +1214,6 @@ if data_inicial and data_final and unidade and tipo_produto and noiva_festa:
     row3 = st.columns(1)
 
     if analise=='Vendas vs Qtd.' or analise=='Ticket Médio vs Qtd.' or analise=='Vendas vs Ticket Médio':
-
-        st.session_state.df_receitas
 
         df_grafico_mensal_1, df_grafico_mensal_2, df_grafico_trimestral_1, df_grafico_trimestral_2, df_grafico_anual = \
             criar_df_mensal_trimestral_anual(df_receitas_filtro, df_receitas_mesmo_mes, df_receitas_trimestral, df_receitas_mesmo_trimestre, st.session_state.df_receitas)
