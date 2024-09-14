@@ -1076,7 +1076,7 @@ def puxar_bd_receitas():
     client = gspread.authorize(credentials)
 
     # Abrir a planilha desejada pelo seu ID
-    spreadsheet = client.open_by_key('1az0u1yGWqIXE9KcUro6VznsVj7d5fozhH3dDsT1eI6A')
+    spreadsheet = client.open_by_key('10eeoCrCFauVPcus6MCV7DWHOpzljb334EA4V-mZZ8CI')
     
     sheet = spreadsheet.worksheet('BD - Receitas')
 
