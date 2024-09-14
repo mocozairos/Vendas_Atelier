@@ -1095,6 +1095,8 @@ def puxar_bd_receitas():
 
     st.session_state.df_receitas['valor'] = st.session_state.df_receitas['valor'].str.replace(',', '.')
 
+    st.session_state.df_receitas['valor'] = pd.to_numeric(st.session_state.df_receitas['valor'], errors='coerce')
+
 st.set_page_config(layout='wide')
 
 if 'df_receitas' not in st.session_state:
