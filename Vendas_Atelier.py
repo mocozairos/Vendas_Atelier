@@ -1087,6 +1087,10 @@ def puxar_bd_receitas():
     st.session_state.df_receitas = st.session_state.df_receitas[st.session_state.df_receitas['produto']=='VESTIDO']\
         .reset_index(drop=True)
 
+    st.session_state.df_receitas['ano'] = st.session_state.df_receitas['ano'].astype(int)
+
+    st.session_state.df_receitas['mes'] = st.session_state.df_receitas['mes'].astype(int)
+
     st.session_state.df_receitas['Ano/Mês'] = st.session_state.df_receitas['mes'].astype(str) + '/' + \
         st.session_state.df_receitas['ano'].astype(str).str[-2:]
 
@@ -1132,20 +1136,6 @@ if data_inicial and data_final:
 
     df_trimestre_atual = st.session_state.df_receitas.loc[(st.session_state.df_receitas['ano'] == ano_final) & 
                                                           (st.session_state.df_receitas['mes'] == mes_final), ['trimestre']]
-
-    st.write(st.session_state.df_receitas['ano'].dtype)
-
-    st.write(st.session_state.df_receitas['mes'].dtype)
-
-    st.write(st.session_state.df_receitas['ano'].unique().tolist())
-
-    st.write(st.session_state.df_receitas['mes'].unique().tolist())
-    
-    st.write(ano_final)
-
-    st.write(mes_final)
-    
-    df_trimestre_atual
 
     trimestre_atual = df_trimestre_atual['trimestre'].iloc[0]
 
