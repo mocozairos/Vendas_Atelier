@@ -1139,11 +1139,6 @@ if data_inicial and data_final:
 
     mes_final = data_final.month
 
-    ano_final
-    ano_ultima_venda
-    mes_final
-    mes_ultima_venda
-
     if ano_final>ano_ultima_venda or ((ano_final==ano_ultima_venda and mes_final>mes_ultima_venda)):
 
         st.warning('A data final escolhida é superior a data da última venda da planilha')
