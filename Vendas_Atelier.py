@@ -1090,8 +1090,6 @@ def puxar_bd_receitas():
     st.session_state.df_receitas['ano'] = st.session_state.df_receitas['ano'].astype(int)
 
     st.session_state.df_receitas['mes'] = st.session_state.df_receitas['mes'].astype(int)
-
-    st.session_state.df_receitas['valor'] = st.session_state.df_receitas['valor'].astype(int)
     
     st.session_state.df_receitas['Ano/Mês'] = st.session_state.df_receitas['mes'].astype(str).str.zfill(2) + '/' + st.session_state.df_receitas['ano'].astype(str).str[-2:]
 
