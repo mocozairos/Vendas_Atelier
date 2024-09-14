@@ -1127,6 +1127,10 @@ st.divider()
 
 if data_inicial and data_final:
 
+    ano_ultima_venda = st.session_state.df_receitas['ano'].max()
+
+    mes_ultima_venda = st.session_state.df_receitas['mes'].max()
+
     ano_inicial = data_inicial.year
 
     mes_inicial = data_inicial.month
@@ -1134,6 +1138,18 @@ if data_inicial and data_final:
     ano_final = data_final.year
 
     mes_final = data_final.month
+
+    if ano_final>ano_ultima_venda or ((ano_final==ano_ultima_venda and mes_final>mes_ultima_venda)):
+
+        st.warning('A data final escolhida é superior a data da última venda da planilha')
+
+        st.stop()
+
+    elif data_inicial>data_final:
+
+        st.warning('A data inicial não pode ser depois da data final')
+
+        st.stop()
 
     df_trimestre_atual = st.session_state.df_receitas.loc[(st.session_state.df_receitas['ano'] == ano_final) & 
                                                           (st.session_state.df_receitas['mes'] == mes_final), ['trimestre']]
