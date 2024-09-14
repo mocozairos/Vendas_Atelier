@@ -1152,17 +1152,6 @@ if data_inicial and data_final:
 
     df_receitas_mesmo_trimestre = st.session_state.df_receitas[(st.session_state.df_receitas['ano']<=ano_final) & 
                                                                (st.session_state.df_receitas['tri']==tri_atual)].reset_index(drop=True)
-
-    df_trimestre_atual
-
-    trimestre_atual
-
-    tri_atual
-    df_receitas_filtro
-    df_receitas_mesmo_mes
-    df_receitas_trimestral
-    df_receitas_mesmo_trimestre
-    
     
 lista_unidade = ['TODAS']
 
@@ -1211,42 +1200,6 @@ if noiva_festa and data_inicial and data_final:
             filtrar_dataframes(df_receitas_filtro, df_receitas_mesmo_mes, df_receitas_trimestral, df_receitas_mesmo_trimestre, 'noiva_festa', noiva_festa)
 
 if data_inicial and data_final and unidade and tipo_produto and noiva_festa:
-                        
-    # if tipo_produto=='TODOS' and noiva_festa=='TODOS':
-
-    #     if unidade!='TODAS':
-
-    #         lista_analises = ['Vendas vs Qtd.', 'Ticket Médio vs Qtd.', 'Vendas vs Ticket Médio', '%Sob Medida vs %Pret a Porter', 
-    #                           'Ticket Médio vs Tipo de Produto']
-
-    #         with row1[4]:
-
-    #             analise = st.radio('Análises Gráficas', lista_analises, index=None)
-
-    #     elif unidade=='TODAS':
-
-    #         lista_analises = ['Vendas vs Qtd.', 'Ticket Médio vs Qtd.', 'Vendas vs Ticket Médio', '%Sob Medida vs %Pret a Porter', 
-    #                           'Ticket Médio vs Tipo de Produto', 'Ticket Médio vs Unidade', '%SP vs %JP vs %ON']
-
-    #         with row1[4]:
-
-    #             analise = st.radio('Análises Gráficas', lista_analises, index=None)
-
-    # elif unidade=='TODAS' and tipo_produto!='TODOS' and noiva_festa!='TODOS':
-
-    #     lista_analises = ['Vendas vs Qtd.', 'Ticket Médio vs Qtd.', 'Vendas vs Ticket Médio', 'Ticket Médio vs Unidade']
-
-    #     with row1[4]:
-
-    #         analise = st.radio('Análises Gráficas', lista_analises, index=None)
-
-    # else:
-
-    #     lista_analises = ['Vendas vs Qtd.', 'Ticket Médio vs Qtd.', 'Vendas vs Ticket Médio']
-
-    #     with row1[4]:
-
-    #         analise = st.radio('Análises Gráficas', lista_analises, index=None)
 
     lista_analises = ['Vendas vs Qtd.', 'Ticket Médio vs Qtd.', 'Vendas vs Ticket Médio', '%Sob Medida vs %Pret a Porter', 
                         'Ticket Médio vs Tipo de Produto', 'Ticket Médio vs Unidade', '%SP vs %JP vs %ON']
