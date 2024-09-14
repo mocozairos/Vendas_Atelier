@@ -1133,6 +1133,14 @@ if data_inicial and data_final:
     df_trimestre_atual = st.session_state.df_receitas.loc[(st.session_state.df_receitas['ano'] == ano_final) & 
                                                           (st.session_state.df_receitas['mes'] == mes_final), ['trimestre']]
 
+    st.write(st.session_state.df_receitas['ano'].unique().tolist())
+
+    st.write(st.session_state.df_receitas['mes'].unique().tolist())
+    
+    st.write(ano_final)
+
+    st.write(mes_final)
+    
     df_trimestre_atual
 
     trimestre_atual = df_trimestre_atual['trimestre'].iloc[0]
