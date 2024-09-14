@@ -1095,7 +1095,7 @@ def puxar_bd_receitas():
 
 st.set_page_config(layout='wide')
 
-base_excel = 'BD - RN Atelier.xlsm'
+st.session_state.df_receitas
 
 if 'df_receitas' not in st.session_state:
 
