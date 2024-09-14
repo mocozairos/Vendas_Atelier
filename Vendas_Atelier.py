@@ -350,6 +350,10 @@ def criar_df_mensal_trimestral_anual(df1, df2, df3, df4, df5):
     
     df_grafico_anual = df5.groupby('ano').agg({'valor': 'sum', 'unidade': 'count'}).reset_index()
 
+    st.write(df_grafico_mensal_1['unidade'].dtype)
+
+    st.write(df_grafico_mensal_1['valor'].dtype)
+
     df_grafico_mensal_1, df_grafico_mensal_2, df_grafico_trimestral_1, df_grafico_trimestral_2, df_grafico_anual = \
         inserir_tm(df_grafico_mensal_1, df_grafico_mensal_2, df_grafico_trimestral_1, df_grafico_trimestral_2, df_grafico_anual)
     
