@@ -1091,6 +1091,10 @@ def puxar_bd_receitas():
 
     st.session_state.df_receitas['mes'] = st.session_state.df_receitas['mes'].astype(int)
 
+    st.session_state.df_receitas['valor'] = st.session_state.df_receitas['valor'].replace({'[^\d,.-]': ''}, regex=True)
+    
+    st.session_state.df_receitas['valor'] = st.session_state.df_receitas['valor'].str.replace(',', '.')
+    
     st.session_state.df_receitas['valor'] = pd.to_numeric(st.session_state.df_receitas['valor'], errors='coerce')
 
     st.session_state.df_receitas['Ano/Mês'] = st.session_state.df_receitas['mes'].astype(str).str.zfill(2) + '/' + st.session_state.df_receitas['ano'].astype(str).str[-2:]
