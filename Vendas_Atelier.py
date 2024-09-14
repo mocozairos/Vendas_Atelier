@@ -1093,6 +1093,8 @@ def puxar_bd_receitas():
     
     st.session_state.df_receitas['Ano/Mês'] = st.session_state.df_receitas['mes'].astype(str).str.zfill(2) + '/' + st.session_state.df_receitas['ano'].astype(str).str[-2:]
 
+    st.session_state.df_receitas['valor'] = st.session_state.df_receitas['valor'].str.replace(',', '.')
+
 st.set_page_config(layout='wide')
 
 if 'df_receitas' not in st.session_state:
