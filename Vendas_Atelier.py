@@ -340,29 +340,15 @@ def criar_df_mensal_trimestral_anual(df1, df2, df3, df4, df5):
 
     df_grafico_mensal_1 = df1.groupby('Ano/Mês').agg({'valor': 'sum', 'unidade': 'count'}).reset_index()
 
-    df_grafico_mensal_1['unidade'] = df_grafico_mensal_1['unidade'].astype(int)
-
     df_grafico_mensal_2 = df2.groupby('Ano/Mês').agg({'valor': 'sum', 'unidade': 'count'}).reset_index()
-
-    df_grafico_mensal_2['unidade'] = df_grafico_mensal_2['unidade'].astype(int)
 
     df_grafico_trimestral_1 = df3.groupby(['ano', 'trimestre']).agg({'valor': 'sum', 'unidade': 'count'})\
         .sort_values(by=['ano', 'trimestre']).reset_index()
-
-    df_grafico_trimestral_1['unidade'] = df_grafico_trimestral_1['unidade'].astype(int)
     
     df_grafico_trimestral_2 = df4.groupby(['ano', 'trimestre']).agg({'valor': 'sum', 'unidade': 'count'})\
         .sort_values(by=['ano', 'trimestre']).reset_index()
-
-    df_grafico_trimestral_2['unidade'] = df_grafico_trimestral_2['unidade'].astype(int)
     
     df_grafico_anual = df5.groupby('ano').agg({'valor': 'sum', 'unidade': 'count'}).reset_index()
-
-    df_grafico_anual['unidade'] = df_grafico_anual['unidade'].astype(int)
-
-    st.write(df_grafico_mensal_1['unidade'].dtype)
-
-    st.write(df_grafico_mensal_1['valor'].dtype)
 
     df_grafico_mensal_1, df_grafico_mensal_2, df_grafico_trimestral_1, df_grafico_trimestral_2, df_grafico_anual = \
         inserir_tm(df_grafico_mensal_1, df_grafico_mensal_2, df_grafico_trimestral_1, df_grafico_trimestral_2, df_grafico_anual)
@@ -1110,6 +1096,8 @@ def puxar_bd_receitas():
     st.session_state.df_receitas['valor'] = st.session_state.df_receitas['valor'].str.replace(',', '.')
 
     st.session_state.df_receitas['valor'] = pd.to_numeric(st.session_state.df_receitas['valor'], errors='coerce')
+
+    st.write(st.session_state.df_receitas['valor'].dtype)
 
 st.set_page_config(layout='wide')
 
