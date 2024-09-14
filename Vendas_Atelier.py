@@ -1093,8 +1093,7 @@ def puxar_bd_receitas():
 
     st.session_state.df_receitas['valor'] = pd.to_numeric(st.session_state.df_receitas['valor'], errors='coerce')
 
-    st.session_state.df_receitas['Ano/Mês'] = st.session_state.df_receitas['mes'].astype(str) + '/' + \
-        st.session_state.df_receitas['ano'].astype(str).str[-2:]
+    st.session_state.df_receitas['Ano/Mês'] = st.session_state.df_receitas['mes'].astype(str).str.zfill(2) + '/' + st.session_state.df_receitas['ano'].astype(str).str[-2:]
 
 st.set_page_config(layout='wide')
 
