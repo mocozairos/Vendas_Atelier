@@ -147,7 +147,7 @@ def tratar_colunas_df_dre(df):
 
     for coluna in df.columns.tolist():
 
-        if not coluna in ['trimestre', 'tri', 'ano', 'mes']
+        if not coluna in ['trimestre', 'tri', 'ano', 'mes']:
 
             df[coluna] = df[coluna].str.replace(',', '.')
     
