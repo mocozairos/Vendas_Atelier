@@ -154,6 +154,18 @@ def puxar_bds():
     
         st.session_state[lista_dfs[index]] = pd.DataFrame(sheet_data[1:], columns=sheet_data[0])
 
+        for coluna in st.session_state[lista_dfs[index]].columns:
+
+            df[coluna] = df[coluna].str.replace(',', '.').astype(float)
+
+        if 'ano' in st.session_state[lista_dfs[index]].columns:
+
+            st.session_state.df_receitas['ano'] = st.session_state.df_receitas['ano'].astype(int)
+
+        if 'mes' in st.session_state[lista_dfs[index]].columns:
+
+            st.session_state.df_receitas['mes'] = st.session_state.df_receitas['mes'].astype(int)
+
 if 'df_dre_mensal' not in st.session_state:
 
     puxar_bds()
