@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+from google.oauth2 import service_account
+import gspread
 
 def grafico_linha_RS(referencia, eixo_x, eixo_y_1, ref_1_label, titulo):
     
@@ -127,44 +129,34 @@ def grafico_linha_percentual(referencia, eixo_x, eixo_y_1, ref_1_label, titulo):
     st.pyplot(fig)
     plt.close(fig)
 
-base_excel = '/Users/marcelolira/Desktop/RN_Atelier_Jupyter/BD - RN Atelier.xlsm'
+def puxar_bds():
+
+    nome_credencial = st.secrets["CREDENCIAL_SHEETS"]
+    credentials = service_account.Credentials.from_service_account_info(nome_credencial)
+    scope = ['https://www.googleapis.com/auth/spreadsheets']
+    credentials = credentials.with_scopes(scope)
+    client = gspread.authorize(credentials)
+
+    # Abrir a planilha desejada pelo seu ID
+    spreadsheet = client.open_by_key('1P9g1KZKJ2h2SbWliHB1FEzf1KmST7Q-EKr3TLICVJK8')
+
+    lista_abas = ['BD - Despesas', 'BD - DRE', 'BD - DRE Trimestral', 'BD - DRE Anual', 
+                  'BD - Metas', 'BD - Metas Trimestral', 'BD - Metas Anual']
+
+    lista_dfs = ['df_despesas_mensal', 'df_dre_mensal', 'df_dre_trimestral', 'df_dre_anual, 'df_metas_mensal', 'df_metas_trimestral', 
+    'df_metas_anual']
+
+    for index in range(len(lista_abas)):
+    
+        sheet = spreadsheet.worksheet(lista_abas[index])
+    
+        sheet_data = sheet.get_all_values()
+    
+        st.session_state[lista_dfs[index]] = pd.DataFrame(sheet_data[1:], columns=sheet_data[0])
 
 if 'df_dre_mensal' not in st.session_state:
 
-    st.session_state.df_dre_mensal = pd.read_excel(base_excel, engine='openpyxl', sheet_name = 'BD - DRE')
-
-    st.session_state.df_dre_mensal['Ano/Mês'] = st.session_state.df_dre_mensal['mes'].astype(str) + '/' + \
-        st.session_state.df_dre_mensal['ano'].astype(str).str[-2:]
-    
-if 'df_dre_trimestral' not in st.session_state:
-
-    st.session_state.df_dre_trimestral = pd.read_excel(base_excel, engine='openpyxl', sheet_name = 'BD - DRE Trimestral')
-    
-if 'df_dre_anual' not in st.session_state:
-
-    st.session_state.df_dre_anual = pd.read_excel(base_excel, engine='openpyxl', sheet_name = 'BD - DRE Anual')
-
-if 'df_despesas_mensal' not in st.session_state:
-
-    st.session_state.df_despesas_mensal = pd.read_excel(base_excel, engine='openpyxl', sheet_name = 'BD - Despesas')
-
-    st.session_state.df_despesas_mensal['Ano/Mês'] = st.session_state.df_despesas_mensal['mes'].astype(str) + '/' + \
-        st.session_state.df_despesas_mensal['ano'].astype(str).str[-2:]
-    
-if 'df_metas_mensal' not in st.session_state:
-
-    st.session_state.df_metas_mensal = pd.read_excel(base_excel, engine='openpyxl', sheet_name = 'BD - Metas')
-
-    st.session_state.df_metas_mensal['Ano/Mês'] = st.session_state.df_metas_mensal['mes'].astype(str) + '/' + \
-        st.session_state.df_metas_mensal['ano'].astype(str).str[-2:]
-    
-if 'df_metas_trimestral' not in st.session_state:
-
-    st.session_state.df_metas_trimestral = pd.read_excel(base_excel, engine='openpyxl', sheet_name = 'BD - Metas Trimestral')
-    
-if 'df_metas_anual' not in st.session_state:
-
-    st.session_state.df_metas_anual = pd.read_excel(base_excel, engine='openpyxl', sheet_name = 'BD - Metas Anual')
+    puxar_bds()
     
 st.title('DRE')
 
@@ -184,28 +176,7 @@ with row1[0]:
 
 if atualizar_dados:
 
-    st.session_state.df_dre_mensal = pd.read_excel(base_excel, engine='openpyxl', sheet_name = 'BD - DRE')
-
-    st.session_state.df_dre_mensal['Ano/Mês'] = st.session_state.df_dre_mensal['mes'].astype(str) + '/' + \
-        st.session_state.df_dre_mensal['ano'].astype(str).str[-2:]
-    
-    st.session_state.df_dre_trimestral = pd.read_excel(base_excel, engine='openpyxl', sheet_name = 'BD - DRE Trimestral')
-    
-    st.session_state.df_dre_anual = pd.read_excel(base_excel, engine='openpyxl', sheet_name = 'BD - DRE Anual')
-
-    st.session_state.df_despesas_mensal = pd.read_excel(base_excel, engine='openpyxl', sheet_name = 'BD - Despesas')
-
-    st.session_state.df_despesas_mensal['Ano/Mês'] = st.session_state.df_despesas_mensal['mes'].astype(str) + '/' + \
-        st.session_state.df_despesas_mensal['ano'].astype(str).str[-2:]
-    
-    st.session_state.df_metas_mensal = pd.read_excel(base_excel, engine='openpyxl', sheet_name = 'BD - Metas')
-
-    st.session_state.df_metas_mensal['Ano/Mês'] = st.session_state.df_metas_mensal['mes'].astype(str) + '/' + \
-        st.session_state.df_metas_mensal['ano'].astype(str).str[-2:]
-    
-    st.session_state.df_metas_trimestral = pd.read_excel(base_excel, engine='openpyxl', sheet_name = 'BD - Metas Trimestral')
-    
-    st.session_state.df_metas_anual = pd.read_excel(base_excel, engine='openpyxl', sheet_name = 'BD - Metas Anual')
+    puxar_bds()
 
 with row1[1]:
 
