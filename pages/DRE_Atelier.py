@@ -196,6 +196,10 @@ if data_inicial and data_final:
 
     mes_final = data_final.month
 
+    st.dataframe(st.session_state.df_dre_mensal)
+
+    st.session_state.df_dre_mensal.dtypes
+
     df_trimestre_atual = st.session_state.df_dre_mensal.loc[(st.session_state.df_dre_mensal['ano'] == ano_final) & 
                                                             (st.session_state.df_dre_mensal['mes'] == mes_final), ['trimestre']]
 
