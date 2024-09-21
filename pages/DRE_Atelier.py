@@ -143,8 +143,8 @@ def puxar_bds():
     lista_abas = ['BD - Despesas', 'BD - DRE', 'BD - DRE Trimestral', 'BD - DRE Anual', 
                   'BD - Metas', 'BD - Metas Trimestral', 'BD - Metas Anual']
 
-    lista_dfs = ['df_despesas_mensal', 'df_dre_mensal', 'df_dre_trimestral', 'df_dre_anual, 'df_metas_mensal', 'df_metas_trimestral', 
-    'df_metas_anual']
+    lista_dfs = ['df_despesas_mensal', 'df_dre_mensal', 'df_dre_trimestral', 'df_dre_anual', 'df_metas_mensal', 'df_metas_trimestral', 
+                 'df_metas_anual']
 
     for index in range(len(lista_abas)):
     
