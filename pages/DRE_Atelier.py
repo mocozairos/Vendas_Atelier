@@ -135,9 +135,9 @@ def tratar_colunas_df_despesas(df):
 
     df['valor_total'] = pd.to_numeric(df['valor_total'], errors='coerce')
 
-    df['ano'] = st.session_state[lista_dfs[index]]['ano'].astype(int)
+    df['ano'] = df['ano'].astype(int)
 
-    df['mes'] = st.session_state[lista_dfs[index]]['mes'].astype(int)
+    df['mes'] = df['mes'].astype(int)
 
     df['Ano/Mês'] = df['mes'].astype(str).str.zfill(2) + '/' + df['ano'].astype(str).str[-2:]
 
