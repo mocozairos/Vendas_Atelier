@@ -156,9 +156,9 @@ def puxar_bds():
 
         for coluna in st.session_state[lista_dfs[index]].columns:
 
-            st.session_state[lista_dfs[index]]['valor'] = st.session_state[lista_dfs[index]]['valor'].str.replace(',', '.')
+            st.session_state[lista_dfs[index]][coluna] = st.session_state[lista_dfs[index]][coluna].str.replace(',', '.')
 
-            st.session_state[lista_dfs[index]]['valor'] = pd.to_numeric(st.session_state[lista_dfs[index]]['valor'], errors='coerce')
+            st.session_state[lista_dfs[index]][coluna] = pd.to_numeric(st.session_state[lista_dfs[index]][coluna], errors='coerce')
 
         if 'ano' in st.session_state[lista_dfs[index]].columns:
 
