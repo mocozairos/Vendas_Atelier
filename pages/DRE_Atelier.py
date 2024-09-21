@@ -156,7 +156,9 @@ def puxar_bds():
 
         for coluna in st.session_state[lista_dfs[index]].columns:
 
-            st.session_state[lista_dfs[index]][coluna] = st.session_state[lista_dfs[index]][coluna].str.replace(',', '.').astype(float)
+            st.session_state[lista_dfs[index]]['valor'] = st.session_state[lista_dfs[index]]['valor'].str.replace(',', '.')
+
+            st.session_state[lista_dfs[index]]['valor'] = pd.to_numeric(st.session_state[lista_dfs[index]]['valor'], errors='coerce')
 
         if 'ano' in st.session_state[lista_dfs[index]].columns:
 
@@ -165,6 +167,9 @@ def puxar_bds():
         if 'mes' in st.session_state[lista_dfs[index]].columns:
 
             st.session_state[lista_dfs[index]]['mes'] = st.session_state[lista_dfs[index]]['mes'].astype(int)
+
+            st.session_state[lista_dfs[index]]['Ano/Mês'] = st.session_state[lista_dfs[index]]['mes'].astype(str).str.zfill(2) + '/' + \
+            st.session_state[lista_dfs[index]]['ano'].astype(str).str[-2:]
 
 if 'df_dre_mensal' not in st.session_state:
 
