@@ -129,6 +129,42 @@ def grafico_linha_percentual(referencia, eixo_x, eixo_y_1, ref_1_label, titulo):
     st.pyplot(fig)
     plt.close(fig)
 
+def tratar_colunas_df_despesas(df):
+
+    df['valor_total'] = df['valor_total'].str.replace(',', '.')
+
+    df['valor_total'] = pd.to_numeric(df['valor_total'], errors='coerce')
+
+    df['ano'] = st.session_state[lista_dfs[index]]['ano'].astype(int)
+
+    df['mes'] = st.session_state[lista_dfs[index]]['mes'].astype(int)
+
+    df['Ano/Mês'] = df['mes'].astype(str).str.zfill(2) + '/' + df['ano'].astype(str).str[-2:]
+
+return df
+
+def tratar_colunas_df_dre(df):
+
+    for coluna in df.columns.tolist():
+
+        if not coluna in ['trimestre', 'tri', 'ano', 'mes']
+
+            df[coluna] = df[coluna].str.replace(',', '.')
+    
+            df[coluna] = pd.to_numeric(df[coluna], errors='coerce')
+    
+            if 'ano' in df.columns:
+    
+                df['ano'] = df['ano'].astype(int)
+    
+            if 'mes' in df.columns:
+    
+                df['mes'] = df['mes'].astype(int)
+    
+                df['Ano/Mês'] = df['mes'].astype(str).str.zfill(2) + '/' + df['ano'].astype(str).str[-2:]
+
+    return df
+
 def puxar_bds():
 
     nome_credencial = st.secrets["CREDENCIAL_SHEETS"]
@@ -154,22 +190,13 @@ def puxar_bds():
     
         st.session_state[lista_dfs[index]] = pd.DataFrame(sheet_data[1:], columns=sheet_data[0])
 
-        for coluna in st.session_state[lista_dfs[index]].columns:
+        if index==0:
 
-            st.session_state[lista_dfs[index]][coluna] = st.session_state[lista_dfs[index]][coluna].str.replace(',', '.')
+            st.session_state[lista_dfs[index]] = tratar_colunas_df_despesas(st.session_state[lista_dfs[index]])
 
-            st.session_state[lista_dfs[index]][coluna] = pd.to_numeric(st.session_state[lista_dfs[index]][coluna], errors='coerce')
+        else:
 
-        if 'ano' in st.session_state[lista_dfs[index]].columns:
-
-            st.session_state[lista_dfs[index]]['ano'] = st.session_state[lista_dfs[index]]['ano'].astype(int)
-
-        if 'mes' in st.session_state[lista_dfs[index]].columns:
-
-            st.session_state[lista_dfs[index]]['mes'] = st.session_state[lista_dfs[index]]['mes'].astype(int)
-
-            st.session_state[lista_dfs[index]]['Ano/Mês'] = st.session_state[lista_dfs[index]]['mes'].astype(str).str.zfill(2) + '/' + \
-            st.session_state[lista_dfs[index]]['ano'].astype(str).str[-2:]
+            st.session_state[lista_dfs[index]] = tratar_colunas_df_dre(st.session_state[lista_dfs[index]])
 
 if 'df_dre_mensal' not in st.session_state:
 
@@ -212,10 +239,6 @@ if data_inicial and data_final:
     ano_final = data_final.year
 
     mes_final = data_final.month
-
-    st.dataframe(st.session_state.df_dre_mensal)
-
-    st.session_state.df_dre_mensal.dtypes
 
     df_trimestre_atual = st.session_state.df_dre_mensal.loc[(st.session_state.df_dre_mensal['ano'] == ano_final) & 
                                                             (st.session_state.df_dre_mensal['mes'] == mes_final), ['trimestre']]
