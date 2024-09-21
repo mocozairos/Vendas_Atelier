@@ -141,7 +141,7 @@ def tratar_colunas_df_despesas(df):
 
     df['Ano/Mês'] = df['mes'].astype(str).str.zfill(2) + '/' + df['ano'].astype(str).str[-2:]
 
-return df
+    return df
 
 def tratar_colunas_df_dre(df):
 
