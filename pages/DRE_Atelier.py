@@ -156,15 +156,15 @@ def puxar_bds():
 
         for coluna in st.session_state[lista_dfs[index]].columns:
 
-            df[coluna] = df[coluna].str.replace(',', '.').astype(float)
+            st.session_state[lista_dfs[index]][coluna] = st.session_state[lista_dfs[index]][coluna].str.replace(',', '.').astype(float)
 
         if 'ano' in st.session_state[lista_dfs[index]].columns:
 
-            st.session_state.df_receitas['ano'] = st.session_state.df_receitas['ano'].astype(int)
+            st.session_state[lista_dfs[index]]['ano'] = st.session_state[lista_dfs[index]]['ano'].astype(int)
 
         if 'mes' in st.session_state[lista_dfs[index]].columns:
 
-            st.session_state.df_receitas['mes'] = st.session_state.df_receitas['mes'].astype(int)
+            st.session_state[lista_dfs[index]]['mes'] = st.session_state[lista_dfs[index]]['mes'].astype(int)
 
 if 'df_dre_mensal' not in st.session_state:
 
